@@ -1,33 +1,36 @@
 import { Tabs } from 'expo-router';
-import React from 'react';
+import { COLORS } from '../../constants/Colors';
+import Entypo from '@expo/vector-icons/Entypo';
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: COLORS.primary,
+        tabBarInactiveTintColor: COLORS.textSecondary,
+        tabBarStyle: {
+          backgroundColor: COLORS.secondary,
+          borderTopColor: COLORS.card,
+          borderTopWidth: 1,
+          height: 70,
+          paddingBottom: 8,
+          paddingTop: 8,
+        },
         headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: 'Inicio',
+          tabBarIcon: () => <Entypo name="home" size={24} color={COLORS.accent} />
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="settings"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Configuración',
+          tabBarIcon: () => <Entypo name="cog" size={24} color={COLORS.accent} />
         }}
       />
     </Tabs>
