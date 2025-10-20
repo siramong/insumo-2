@@ -2,8 +2,16 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
 import { COLORS } from '../constants/Colors';
 import {Entypo, FontAwesome6} from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
 export default function NowPlaying() {
+
+  const router = useRouter();
+
+  const handleAPI = () => {
+    router.replace('/playlist');
+  };
+
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
@@ -29,7 +37,7 @@ export default function NowPlaying() {
       </View>
       
       <View className="flex-row items-center">
-        <TouchableOpacity className="p-2 active:opacity-70">
+        <TouchableOpacity className="p-2 active:opacity-70" onPress={handleAPI}>
         <Entypo name="heart" size={24} color={COLORS.accent} />
         </TouchableOpacity>
         <TouchableOpacity
